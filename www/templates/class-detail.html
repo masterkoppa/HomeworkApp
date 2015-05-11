@@ -1,0 +1,19 @@
+<ion-view view-title="{{ class.name }}">
+  <ion-content class="padding">
+    <h4>Times</h4>
+
+    <h4>Location</h4>
+    <p>{{ class.location }}</p>
+
+    <h4>Teacher</h4>
+    <p>{{ class.teacher }}</p>
+
+    <h4>Upcoming Assignments</h4>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="assignment in class.assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
+        <h2>{{ assignment.name }}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

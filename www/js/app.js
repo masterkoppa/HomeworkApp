@@ -38,24 +38,24 @@ angular.module('homework', ['ionic', 'homework.controllers', 'homework.services'
 
   // Each tab has its own nav history stack:
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+  .state('tab.home', {
+    url: '/home',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/tab-home.html',
+        controller: 'HomeCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    }
+  })
+  .state('tab.class-detail', {
+    url: '/classes/:classId',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/class-detail.html',
+        controller: 'ClassDetailCtrl'
       }
-    })
+    }
+  })
   .state('tab.calendar', {
     url: '/calendar',
     views: {
@@ -65,17 +65,35 @@ angular.module('homework', ['ionic', 'homework.controllers', 'homework.services'
       }
     }
   })
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.assignments', {
+    url: '/assignments',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-assignments': {
+      templateUrl: 'templates/tab-assignments.html',
+      controller: 'AssignmentsCtrl'
+      }
+    }
+  })
+  .state('tab.assignment-detail', {
+    url: '/assignments/:assignmentId',
+    views: {
+      'tab-assignments': {
+      templateUrl: 'templates/assignment-detail.html',
+      controller: 'AssignmentDetailCtrl'
+      }
+    }
+  })
+  .state('tab.settings', {
+    url: '/settings',
+    views: {
+      'tab-settings': {
+      templateUrl: 'templates/tab-settings.html',
+      controller: 'SettingsCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/account');
+  $urlRouterProvider.otherwise('/tab/home');
 
 });

@@ -1,47 +1,111 @@
 angular.module('homework.services', [])
 
-.factory('Chats', function() {
+.factory('Classes', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var chats = [{
+  var classes = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'https://pbs.twimg.com/profile_images/514549811765211136/9SgAuHeY.png'
+    name: 'Class #1',
+    teacher: 'John Doe',
+    location: 'GOL-3123',
+    assignments: [{
+      id: 0,
+      name: 'Assignment #1',
+      classId: 0,
+      dueDate: new Date(2015, 4, 13, 23, 59)
+    }, {
+      id: 3,
+      name: 'Assignment #4',
+      teacher: 'John Doe',
+      classId: 0,
+      dueDate: new Date(2015, 4, 13, 23, 59)
+    }]
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'https://avatars3.githubusercontent.com/u/11214?v=3&s=460'
-  },{
+    name: 'Class #2',
+    teacher: 'John Doe',
+    location: 'GOL-3123',
+    assignments: [{
+      id: 1,
+      name: 'Assignment #2',
+      classId: 1,
+      dueDate: new Date(2015, 4, 13, 23, 59)
+    }]
+  }, {
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'https://pbs.twimg.com/profile_images/479090794058379264/84TKj_qa.jpeg'
+    name: 'Class #3',
+    teacher: 'John Doe',
+    location: 'GOL-3123',
+    assignments: [{
+      id: 3,
+      name: 'Assignment #3',
+      classId: 2,
+      dueDate: new Date(2015, 4, 13, 23, 59)
+    }]
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'https://pbs.twimg.com/profile_images/578237281384841216/R3ae1n61.png'
+    name: 'Class #4',
+    teacher: 'John Doe',
+    location: 'GOL-3123',
+    assignments: []
   }];
 
   return {
     all: function() {
-      return chats;
+      return classes;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    remove: function(classObject) {
+      classes.splice(classes.indexOf(classObject), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(classId) {
+      for (var i = 0; i < classes.length; i++) {
+        if (classes[i].id === parseInt(classId)) {
+          return classes[i];
+        }
+      }
+      return null;
+    }
+  };
+})
+
+.factory('Assignments', function() {
+  // Might use a resource here that returns a JSON array
+
+  // Some fake testing data
+  var assignments = [{
+    id: 0,
+    name: 'Assignment #1',
+    classId: 0,
+    dueDate: new Date(2015, 4, 13, 23, 59)
+  }, {
+    id: 1,
+    name: 'Assignment #2',
+    classId: 1,
+    dueDate: new Date(2015, 4, 13, 23, 59)
+  }, {
+    id: 2,
+    name: 'Assignment #3',
+    classId: 2,
+    dueDate: new Date(2015, 4, 13, 23, 59)
+  }, {
+    id: 3,
+    name: 'Assignment #4',
+    classId: 0,
+    dueDate: new Date(2015, 4, 13, 23, 59)
+  }];
+
+  return {
+    all: function() {
+      return assignments;
+    },
+    remove: function(assignment) {
+      assignments.splice(assignments.indexOf(assignment), 1);
+    },
+    get: function(assignmentId) {
+      for (var i = 0; i < assignments.length; i++) {
+        if (assignments[i].id === parseInt(assignmentId)) {
+          return assignments[i];
         }
       }
       return null;

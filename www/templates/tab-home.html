@@ -1,0 +1,12 @@
+<ion-view view-title="Home">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="class in classes" type="item-text-wrap" href="#/tab/classes/{{ class.id }}">
+        <h2>{{ class.name }}</h2>
+        <p ng-if="class.assignments.length > 0">{{ class.assignments[0].name }}</p>
+        <p ng-if="class.assignments.length == 0">No assignments</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

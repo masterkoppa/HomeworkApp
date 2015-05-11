@@ -1,24 +1,25 @@
 angular.module('homework.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
+.controller('HomeCtrl', function($scope, Classes) {
+	$scope.classes = Classes.all();
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('ClassDetailCtrl', function($scope, $stateParams, Classes) {
+	$scope.class = Classes.get($stateParams.classId);
 })
 
 .controller('CalendarCtrl', function($scope) {
-  
+
+})
+
+.controller('AssignmentsCtrl', function($scope, Assignments) {
+	$scope.assignments = Assignments.all();
+})
+
+.controller('AssignmentDetailCtrl', function($scope, $stateParams, Assignments) {
+	$scope.assignment = Assignments.get($stateParams.assignmentId);
+})
+
+.controller('SettingsCtrl', function($scope) {
+
 });
