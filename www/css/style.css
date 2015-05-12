@@ -9,3 +9,12 @@
 .item-avatar .item-content {
 	padding-left: 35px;
 }
+
+.item-body {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.item-body > div {
+	font-size: 14px;
+}

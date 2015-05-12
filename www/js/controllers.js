@@ -1,6 +1,6 @@
 angular.module('homework.controllers', [])
 
-.controller('HomeCtrl', function($scope, Classes) {
+.controller('HomeCtrl', function($scope, Classes, Assignments) {
 	$scope.classes = Classes.all();
 
 	$scope.getNextMeetingTime = function(classObject) {
@@ -30,6 +30,13 @@ angular.module('homework.controllers', [])
 
 .controller('ClassDetailCtrl', function($scope, $stateParams, Classes) {
 	$scope.class = Classes.get($stateParams.classId);
+
+	$scope.getFormattedMeetingTime = function (meetingTime) {
+		var start = moment().set({ 'hour': meetingTime.start.hour, 'minute': meetingTime.start.minute });
+		var end = moment().set({ 'hour': meetingTime.end.hour, 'minute': meetingTime.end.minute });
+
+		return moment().isoWeekday(meetingTime.day).format('dddd') + ' @ ' + moment(start).format('h:mma') + ' - ' + moment(end).format('h:mma');
+	};
 })
 
 .controller('CalendarCtrl', function($scope) {

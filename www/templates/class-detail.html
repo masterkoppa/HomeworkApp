@@ -1,19 +1,37 @@
 <ion-view view-title="{{ class.name }}">
   <ion-content class="padding">
-    <h4>Times</h4>
-
-    <h4>Location</h4>
-    <p>{{ class.location }}</p>
-
-    <h4>Teacher</h4>
-    <p>{{ class.teacher }}</p>
-
-    <h4>Upcoming Assignments</h4>
-    <ion-list>
-      <ion-item class="item-icon-right" ng-repeat="assignment in class.assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
-        <h2>{{ assignment.name }}</h2>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
+    <div class="list card">
+      <div class="item item-divider">Meeting Times</div>
+      <div class="item item-body">
+        <div ng-repeat="meetingTime in class.meetingTimes">
+          <div>{{ getFormattedMeetingTime(meetingTime) }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Location</div>
+      <div class="item item-body">
+        <div>{{ class.location }}</div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Teacher</div>
+      <div class="item item-body">
+        <div>{{ class.teacher }}</div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Upcoming Assignments</div>
+      <div class="item item-body">
+        <!--
+        <ion-list>
+          <ion-item class="item-icon-right" ng-repeat="assignment in class.assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
+            <h2>{{ assignment.name }}</h2>
+            <i class="icon ion-chevron-right icon-accessory"></i>
+          </ion-item>
+        </ion-list>
+        -->
+      </div>
+    </div>
   </ion-content>
 </ion-view>
