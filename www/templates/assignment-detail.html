@@ -1,4 +1,36 @@
 <ion-view view-title="{{ assignment.name }}">
-	<ion-content class="padding">
-	</ion-content>
+  <ion-content class="padding">
+    <div class="list card">
+      <div class="item item-divider">Class</div>
+      <div class="item item-body">
+        <div></div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Due Date</div>
+      <div class="item item-body">
+        <div>{{ assignment.dueDate | date:'MMMM d, yyyy h:mm a' }}</div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Reminder</div>
+      <div class="item item-body">
+        <div></div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Additional Notes</div>
+      <div class="item item-body">
+        <div ng-if="assignments.notes">{{ assignment.notes }}</div>
+        <div ng-if="!assignments.notes">None</div>
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Completed</div>
+      <div class="item item-body">
+        <div ng-if="assignment.isCompleted">Yes</div>
+        <div ng-if="!assignment.isCompleted">No</div>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

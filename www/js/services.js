@@ -125,7 +125,7 @@ angular.module('homework.services', [])
 
     localStorage.class_list = JSON.stringify(classes);
   }
-  
+
   class_list = JSON.parse(localStorage.class_list);
 
   return {
@@ -161,22 +161,30 @@ angular.module('homework.services', [])
     id: 0,
     name: 'Assignment #1',
     classId: 0,
-    dueDate: new Date(2015, 4, 13, 23, 59)
+    dueDate: new Date(2015, 4, 13, 23, 59),
+    isCompleted: false,
+    notes: null
   }, {
     id: 1,
     name: 'Assignment #2',
     classId: 1,
-    dueDate: new Date(2015, 4, 13, 23, 59)
+    dueDate: new Date(2015, 4, 13, 23, 59),
+    isCompleted: true,
+    notes: null
   }, {
     id: 2,
     name: 'Assignment #3',
     classId: 2,
-    dueDate: new Date(2015, 4, 13, 23, 59)
+    dueDate: new Date(2015, 4, 13, 23, 59),
+    isCompleted: false,
+    notes: null
   }, {
     id: 3,
     name: 'Assignment #4',
     classId: 0,
-    dueDate: new Date(2015, 4, 13, 23, 59)
+    dueDate: new Date(2015, 4, 13, 23, 59),
+    isCompleted: false,
+    notes: null
   }];
 
   return {

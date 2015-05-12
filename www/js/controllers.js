@@ -35,7 +35,7 @@ angular.module('homework.controllers', [])
 		var start = moment().set({ 'hour': meetingTime.start.hour, 'minute': meetingTime.start.minute });
 		var end = moment().set({ 'hour': meetingTime.end.hour, 'minute': meetingTime.end.minute });
 
-		return moment().isoWeekday(meetingTime.day).format('dddd') + ' @ ' + moment(start).format('h:mma') + ' - ' + moment(end).format('h:mma');
+		return moment().isoWeekday(meetingTime.day).format('dddd') + ' @ ' + moment(start).format('h:mm A') + ' - ' + moment(end).format('h:mm A');
 	};
 })
 
