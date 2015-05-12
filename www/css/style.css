@@ -18,3 +18,7 @@
 .item-body > div {
 	font-size: 14px;
 }
+
+.assignment-items {
+	padding: 0;
+};
