@@ -3,7 +3,7 @@
     <ion-list>
       <ion-item class="item-icon-right" ng-repeat="assignment in assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
         <h2>{{ assignment.name }}</h2>
-        <p>{{ assignment.dueDate | date }}<p>
+        <p>{{ getTimeUntilDue(assignment) }}<p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>

@@ -1,7 +1,5 @@
 /* Empty. Add your own CSS if you like */
 .list > .item > .item-content > .color-label {
-	/* TODO: The color here will depend on the color assigned to the respective class */;
-	background-color: red; 
 	position: absolute; 
 	left: 0; 
 	width: 10px; 

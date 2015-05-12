@@ -2,8 +2,9 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-avatar item-icon-right" ng-repeat="class in classes" type="item-text-wrap" href="#/tab/classes/{{ class.id }}">
-        <div class="color-label"></div>
+        <div class="color-label" ng-style="{ 'background-color': class.color }"></div>
         <h2>{{ class.name }}</h2>
+        <p>{{ getNextMeetingTime(class) }}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>
     </ion-list>
