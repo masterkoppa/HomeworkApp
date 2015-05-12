@@ -1,6 +1,6 @@
 angular.module('homework.services', [])
 
-.factory('Classes', function() {
+.factory('Classes', function(Assignments) {
   // Might use a resource here that returns a JSON array
 
   var class_id = 0;
@@ -36,18 +36,7 @@ angular.module('homework.services', [])
           minute: 15
         }
       }],
-      assignments: [{
-        id: 0,
-        name: 'Assignment #1',
-        classId: 0,
-        dueDate: new Date(2015, 4, 19, 23, 59)
-      }, {
-        id: 3,
-        name: 'Assignment #4',
-        teacher: 'John Doe',
-        classId: 0,
-        dueDate: new Date(2015, 4, 19, 23, 59)
-      }]
+      assignments: [0,3]
     }, {
       id: 1,
       name: 'Class #2',
@@ -75,12 +64,7 @@ angular.module('homework.services', [])
           minute: 15
         }
       }],
-      assignments: [{
-        id: 1,
-        name: 'Assignment #2',
-        classId: 1,
-        dueDate: new Date(2015, 4, 19, 23, 59)
-      }]
+      assignments: [1]
     }, {
       id: 2,
       name: 'Class #3',
@@ -118,12 +102,7 @@ angular.module('homework.services', [])
           minute: 50
         }
       }],
-      assignments: [{
-        id: 3,
-        name: 'Assignment #3',
-        classId: 2,
-        dueDate: new Date(2015, 4, 19, 23, 59)
-      }]
+      assignments: [3]
     }, {
       id: 3,
       name: 'Class #4',
@@ -146,6 +125,7 @@ angular.module('homework.services', [])
 
     localStorage.class_list = JSON.stringify(classes);
   }
+  
   class_list = JSON.parse(localStorage.class_list);
 
   return {
@@ -158,7 +138,14 @@ angular.module('homework.services', [])
     get: function(classId) {
       for (var i = 0; i < class_list.length; i++) {
         if (class_list[i].id === parseInt(classId)) {
-          return class_list[i];
+          var class_item = {}
+          angular.extend(class_item, class_list[i]);
+          for(var a = 0; a < class_item.assignments.length; a++){
+            var assignment_id = class_item.assignments[a];
+            
+            class_item.assignments[a] = Assignments.get(class_item.assignments[a]);
+          }
+          return class_item;
         }
       }
       return null;
