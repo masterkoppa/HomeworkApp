@@ -3,7 +3,14 @@
 	position: absolute; 
 	left: 0; 
 	width: 10px; 
+}
+
+.list > .item > .item-content > .class-color-label {
 	height: 43px;
+}
+
+.list > .item > .item-content > .assignment-color-label {
+	height: 65px;
 }
 
 .item-avatar .item-content {

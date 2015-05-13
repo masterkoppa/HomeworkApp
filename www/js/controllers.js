@@ -47,10 +47,8 @@ angular.module('homework.controllers', [])
 	$scope.assignments = Assignments.all();
 
 	$scope.getTimeUntilDue = function(assignment) {
-		var now = new Date();
-
-		var start = moment([now.getYear(), now.getMonth(), now.getDate()]);
-		var end = moment([assignment.dueDate.getYear(), assignment.dueDate.getMonth(), assignment.dueDate.getDate()]);
+		var start = moment();
+		var end = assignment.dueDate;
 
 		return 'Due ' + end.from(start);
 	};

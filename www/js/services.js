@@ -11,8 +11,8 @@ angular.module('homework.services', [])
     // Some fake testing data
     var classes = [{
       id: 0,
-      name: 'Class #1',
-      teacher: 'John Doe',
+      name: 'Foundations of Mobile Design',
+      teacher: 'Bryan French',
       location: 'GOL-3123', 
       color: 'SpringGreen',
       meetingTimes: [{
@@ -36,12 +36,12 @@ angular.module('homework.services', [])
           minute: 15
         }
       }],
-      assignments: [0,3]
+      assignments: [2]
     }, {
       id: 1,
-      name: 'Class #2',
-      teacher: 'John Doe',
-      location: 'GOL-3123',
+      name: 'SE Project II',
+      teacher: 'Samuel Malachowsky',
+      location: 'GOL-1400',
       color: 'SlateBlue',
       meetingTimes: [{
         day: 2,
@@ -67,9 +67,9 @@ angular.module('homework.services', [])
       assignments: [1]
     }, {
       id: 2,
-      name: 'Class #3',
-      teacher: 'John Doe',
-      location: 'GOL-3123',
+      name: 'Trends in Software Development Process',
+      teacher: 'Samuel Malachowsky',
+      location: 'GOL-1650',
       color: 'SkyBlue',
       meetingTimes: [{
         day: 1,
@@ -102,13 +102,13 @@ angular.module('homework.services', [])
           minute: 50
         }
       }],
-      assignments: [3]
+      assignments: [0, 3]
     }, {
       id: 3,
-      name: 'Class #4',
-      teacher: 'John Doe',
+      name: 'Wines of the World II',
+      teacher: 'Lorraine Hems',
       color: 'Orchid',
-      location: 'GOL-3123',
+      location: 'EAS-4125',
       meetingTimes: [{
         day: 1,
         start: {
@@ -160,29 +160,25 @@ angular.module('homework.services', [])
   var assignments = [{
     id: 0,
     name: 'Assignment #1',
-    classId: 0,
-    dueDate: new Date(2015, 4, 13, 23, 59),
+    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: false,
     notes: null
   }, {
     id: 1,
     name: 'Assignment #2',
-    classId: 1,
-    dueDate: new Date(2015, 4, 13, 23, 59),
+    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 15, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: true,
     notes: null
   }, {
     id: 2,
     name: 'Assignment #3',
-    classId: 2,
-    dueDate: new Date(2015, 4, 13, 23, 59),
+    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 19, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: false,
     notes: null
   }, {
     id: 3,
     name: 'Assignment #4',
-    classId: 0,
-    dueDate: new Date(2015, 4, 13, 23, 59),
+    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: false,
     notes: null
   }];

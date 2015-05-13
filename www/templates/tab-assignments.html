@@ -1,8 +1,10 @@
 <ion-view view-title="Assignments">
   <ion-content>
     <ion-list>
-      <ion-item class="item-icon-right" ng-repeat="assignment in assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="assignment in assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
+        <div class="color-label assignment-color-label" ng-style="{ 'background-color': assignment.class.color }"></div>
         <h2>{{ assignment.name }}</h2>
+        <p>{{ assignment.class.name }}<p>
         <p>{{ getTimeUntilDue(assignment) }}<p>
         <i class="icon ion-chevron-right icon-accessory"></i>
       </ion-item>

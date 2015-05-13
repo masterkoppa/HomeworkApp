@@ -3,13 +3,13 @@
     <div class="list card">
       <div class="item item-divider">Class</div>
       <div class="item item-body">
-        <div></div>
+        <div>{{ assignment.class.name }}</div>
       </div>
     </div>
     <div class="list card">
       <div class="item item-divider">Due Date</div>
       <div class="item item-body">
-        <div>{{ assignment.dueDate | date:'MMMM d, yyyy h:mm a' }}</div>
+        <div>{{ assignment.dueDate.format('MMMM d, YYYY h:mm A') }}</div>
       </div>
     </div>
     <div class="list card">
