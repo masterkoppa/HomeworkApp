@@ -161,14 +161,16 @@ angular.module('homework.services', [])
     id: 0,
     name: 'Assignment #1',
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: false,
-    notes: null
+    isCompleted: true,
+    notes: null,
+    grade: 88
   }, {
     id: 1,
     name: 'Assignment #2',
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 15, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: true,
-    notes: null
+    isCompleted: false,
+    notes: null,
+    grade: null
   }, {
     id: 2,
     name: 'Assignment #3',
@@ -179,8 +181,9 @@ angular.module('homework.services', [])
     id: 3,
     name: 'Assignment #4',
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: false,
-    notes: null
+    isCompleted: true,
+    notes: null,
+    grade: 92
   }];
 
   return {

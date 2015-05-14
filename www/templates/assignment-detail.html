@@ -32,5 +32,11 @@
         <div ng-if="!assignment.isCompleted">No</div>
       </div>
     </div>
+    <div class="list card" ng-if="assignment.isCompleted">
+      <div class="item item-divider">Grade</div>
+      <div class="item item-body">
+        <div>{{ assignment.grade }}</div>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

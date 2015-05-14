@@ -37,6 +37,23 @@ angular.module('homework.controllers', [])
 
 		return moment().isoWeekday(meetingTime.day).format('dddd') + ' @ ' + moment(start).format('h:mm A') + ' - ' + moment(end).format('h:mm A');
 	};
+
+	$scope.calculateGrade = function () {
+		var sum = 0, num = 0;
+		for (var i = 0; i < $scope.class.assignments.length; i++) {
+			if ($scope.class.assignments[i] && $scope.class.assignments[i].grade) {
+				sum += $scope.class.assignments[i].grade;
+				num += 1;
+			}
+		}
+
+		if (num == 0) {
+			return null
+		}
+
+		// TODO: Maybe add weights to assignments and calculate grade based off of that rather than a simple average
+		return (sum / num);
+	};
 })
 
 .controller('CalendarCtrl', function($scope) {
