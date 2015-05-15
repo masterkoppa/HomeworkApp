@@ -15,6 +15,8 @@ angular.module('homework.services', [])
       teacher: 'Bryan French',
       location: 'GOL-3123', 
       color: 'SpringGreen',
+      start: new Date(2015, 0, 26),
+      end: new Date(2015, 4, 13),
       meetingTimes: [{
         day: 2,
         start: {
@@ -43,6 +45,8 @@ angular.module('homework.services', [])
       teacher: 'Samuel Malachowsky',
       location: 'GOL-1400',
       color: 'SlateBlue',
+      start: new Date(2015, 0, 26),
+      end: new Date(2015, 4, 13),
       meetingTimes: [{
         day: 2,
         start: {
@@ -71,6 +75,8 @@ angular.module('homework.services', [])
       teacher: 'Samuel Malachowsky',
       location: 'GOL-1650',
       color: 'SkyBlue',
+      start: new Date(2015, 0, 26),
+      end: new Date(2015, 4, 13),
       meetingTimes: [{
         day: 1,
         start: {
@@ -108,6 +114,8 @@ angular.module('homework.services', [])
       name: 'Wines of the World II',
       teacher: 'Lorraine Hems',
       color: 'Orchid',
+      start: new Date(2015, 0, 26),
+      end: new Date(2015, 4, 13),
       location: 'EAS-4125',
       meetingTimes: [{
         day: 1,

@@ -1,5 +1,10 @@
 <ion-view view-title="Calendar">
   <ion-content class="padding">
-    <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
+  	<div class="button-bar calendar-button-bar">
+	  	<a class="button" ng-class="{'activated' : selectedView == 'Month'}" ng-click="changeView('Month', 'classSchedule')">Month</a>
+	  	<a class="button" ng-class="{'activated' : selectedView == 'AgendaWeek'}" ng-click="changeView('AgendaWeek', 'classSchedule')">Week</a>
+	  	<a class="button" ng-class="{'activated' : selectedView == 'AgendaDay'}" ng-click="changeView('AgendaDay', 'classSchedule')">Day</a>
+	</div>
+    <div ui-calendar="uiConfig.calendar" class="calendar" ng-model="eventSources" calendar="classSchedule"></div>
   </ion-content>
 </ion-view>
