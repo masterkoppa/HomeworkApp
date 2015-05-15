@@ -29,3 +29,27 @@
 .assignment-items {
 	padding: 0;
 };
+
+.class-detail h4 {
+	color: #222;
+	font-weight: 500;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.class-detail,
+.assignment-detail {
+	padding-top: 25px;
+}
+
+.class-detail p,
+.assignment-detail p,
+.class-detail .meeting-time {
+	font-size: 14px;
+	color: #444;
+}
+
+.class-detail p,
+.assignment-detail p, {
+	margin-bottom: 20px;
+}

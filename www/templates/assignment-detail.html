@@ -1,42 +1,23 @@
 <ion-view view-title="{{ assignment.name }}">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Class</div>
-      <div class="item item-body">
-        <div>{{ assignment.class.name }}</div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Due Date</div>
-      <div class="item item-body">
-        <div>{{ assignment.dueDate.format('MMMM d, YYYY h:mm A') }}</div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Reminder</div>
-      <div class="item item-body">
-        <div></div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Additional Notes</div>
-      <div class="item item-body">
-        <div ng-if="assignments.notes">{{ assignment.notes }}</div>
-        <div ng-if="!assignments.notes">None</div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Completed</div>
-      <div class="item item-body">
-        <div ng-if="assignment.isCompleted">Yes</div>
-        <div ng-if="!assignment.isCompleted">No</div>
-      </div>
-    </div>
-    <div class="list card" ng-if="assignment.isCompleted">
-      <div class="item item-divider">Grade</div>
-      <div class="item item-body">
-        <div>{{ assignment.grade }}</div>
-      </div>
-    </div>
+  <ion-content class="padding assignment-detail">
+    <h4>Class</h4>
+    <p>{{ assignment.class.name }}</p>
+
+    <h4>Due Date</h4>
+    <p>{{ assignment.dueDate.format('MMMM d, YYYY h:mm A') }}</p>
+
+    <h4>Reminder</h4>
+    <p></p>
+
+    <h4>Additional Notes</h4>
+    <p ng-if="assignments.notes">{{ assignment.notes }}</p>
+    <p ng-if="!assignments.notes">None</p>
+
+    <h4>Completed</h4>
+    <p ng-if="assignment.isCompleted">Yes</p>
+    <p ng-if="!assignment.isCompleted">No</p>
+    
+    <h4 ng-if="assignment.grade">Grade</h4>
+    <p>{{ assignment.grade }}</p>
   </ion-content>
 </ion-view>

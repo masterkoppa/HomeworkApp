@@ -1,40 +1,24 @@
 <ion-view view-title="{{ class.name }}">
-  <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Meeting Time(s)</div>
-      <div class="item item-body">
-        <div ng-repeat="meetingTime in class.meetingTimes">
-          <div>{{ getFormattedMeetingTime(meetingTime) }}</div>
-        </div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Location</div>
-      <div class="item item-body">
-        <div>{{ class.location }}</div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Teacher</div>
-      <div class="item item-body">
-        <div>{{ class.teacher }}</div>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Assignments</div>
-      <div class="item item-body assignment-items">
-        <ion-item class="item-icon-right" ng-repeat="assignment in class.assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
-          <div style="font-size: 14px;">{{ assignment.name }}</div>
-          <i class="icon ion-chevron-right icon-accessory"></i>
-        </ion-item>
-      </div>
-    </div>
-    <div class="list card">
-      <div class="item item-divider">Current Grade</div>
-      <div class="item item-body">
-        <div ng-if="calculateGrade() == 0">-</div>
-        <div ng-if="calculateGrade() > 0">{{ calculateGrade() }}</div>
-      </div>
-    </div>
+  <ion-content class="padding class-detail">
+    <h4>Meeting Time(s)</h4>
+    <p>
+      <div class="meeting-time" ng-repeat="meetingTime in class.meetingTimes">{{ getFormattedMeetingTime(meetingTime) }}</div>
+    </p>
+
+    <h4>Location</h4>
+    <p>{{ class.location }}</p>
+
+    <h4>Teacher</h4>
+    <p>{{ class.teacher }}</p>
+
+    <h4>Assignments</h4>
+    <ion-item class="item-icon-right" ng-repeat="assignment in class.assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">
+      <div style="font-size: 14px;">{{ assignment.name }}</div>
+      <i class="icon ion-chevron-right icon-accessory"></i>
+    </ion-item>
+    <p ng-if="class.assignments.length == 0">No assignments</p>
+    
+    <h4 ng-if="calculateGrade()">Current Grade</h4>
+    <p ng-if="calculateGrade()">{{ calculateGrade() }}</p>
   </ion-content>
 </ion-view>
