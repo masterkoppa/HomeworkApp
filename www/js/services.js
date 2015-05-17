@@ -158,7 +158,7 @@ angular.module('homework.services', [])
       }
       return null;
     },
-    create(classJson) {
+    create: function(classJson) {
       //Calculate the max class id
       var max = 0;
       for (var i = class_list.length - 1; i >= 0; i--) {
