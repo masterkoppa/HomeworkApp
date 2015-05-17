@@ -20,7 +20,7 @@
         </label>
       </div>
       <div class="padding">
-        <button ng-click="createClass(class)" class="button button-block button-positive">Create Class</button>
+        <button ng-disabled="classForm.$invalid" ng-click="createClass(class)" class="button button-block button-positive">Create Class</button>
       </div>
     </form>
   </ion-content>

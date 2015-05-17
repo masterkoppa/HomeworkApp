@@ -136,6 +136,10 @@ angular.module('homework.services', [])
 
   class_list = JSON.parse(localStorage.class_list);
 
+  var save = function(class_list){
+    localStorage.class_list = JSON.stringify(class_list);
+  }
+
   return {
     all: function() {
       return class_list;
@@ -168,13 +172,17 @@ angular.module('homework.services', [])
       };
 
       // Set the id
-      var class_id = max;
-      classObject.id = class_id;
+      var class_id = max + 1;
+      classJson.id = class_id;
 
       // Initialize assigments array
-      classObject.assignments = []
+      classJson.assignments = []
 
-      class_list.append(classObject);
+      // TODO Remove me
+      classJson.meetingTimes = []
+
+      class_list.push(classJson);
+      save(class_list);
     }
   };
 })
