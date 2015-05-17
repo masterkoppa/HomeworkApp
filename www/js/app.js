@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('homework', ['ionic', 'ui.calendar', 'homework.controllers', 'homework.services'])
+angular.module('homework', ['ionic', 'ui.calendar', 'jcs-autoValidate' ,'homework.controllers', 'homework.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -89,6 +89,15 @@ angular.module('homework', ['ionic', 'ui.calendar', 'homework.controllers', 'hom
       'tab-settings': {
       templateUrl: 'templates/tab-settings.html',
       controller: 'SettingsCtrl'
+      }
+    }
+  })
+  .state('tab.new-class', {
+    url: '/new/class',
+    views: {
+      'tab-home': {
+      templateUrl: 'templates/new-class.html',
+      controller: 'NewClassCtrl'
       }
     }
   });
