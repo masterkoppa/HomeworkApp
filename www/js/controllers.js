@@ -1,6 +1,7 @@
 angular.module('homework.controllers', [])
 
 .controller('HomeCtrl', function($scope, Classes, Assignments) {
+
 	$scope.classes = Classes.all();
 
 	$scope.getNextMeetingTime = function(classObject) {
@@ -29,6 +30,7 @@ angular.module('homework.controllers', [])
 })
 
 .controller('ClassDetailCtrl', function($scope, $stateParams, Classes) {
+
 	$scope.class = Classes.get($stateParams.classId);
 
 	$scope.getFormattedMeetingTime = function (meetingTime) {
@@ -57,28 +59,47 @@ angular.module('homework.controllers', [])
 })
 
 .controller('CalendarCtrl', function($scope, Classes, uiCalendarConfig) {
-	var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
     
-	$scope.changeTo = 'Hungarian';
-
-	$scope.eventSource = {};
+    /* Event source that pulls from google.com */
+    $scope.eventSource = {
+            url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
+            className: 'gcal-event',           // an option!
+            currentTimezone: 'America/Chicago' // an option!
+    };
 
     $scope.events = [];
     $scope.classes = Classes.all();
     for (var i = 0; i < $scope.classes.length; i++) {
-    	$scope.events.push({
-    		title: $scope.classes[i].name,
-    		start: $scope.classes[i].start,
-    		end: $scope.classes[i].end,
-    		allDay: false
-    	});
+    	var date = new Date($scope.classes[i].start);
+    	while (date.getTime() <= new Date($scope.classes[i].end).getTime()) {
+    		for (var j = 0; j < $scope.classes[i].meetingTimes.length; j++) {
+    			if (date.getDay() == $scope.classes[i].meetingTimes[j].day) {
+    				$scope.events.push({
+			    		title: $scope.classes[i].name,
+			    		start: new Date(date.getFullYear(), date.getMonth(), date.getDate(), $scope.classes[i].meetingTimes[j].start.hour, $scope.classes[i].meetingTimes[j].start.minute),
+			    		end: new Date(date.getFullYear(), date.getMonth(), date.getDate(), $scope.classes[i].meetingTimes[j].end.hour, $scope.classes[i].meetingTimes[j].end.minute),
+			    		allDay: false,
+			    		color: $scope.classes[i].color
+			    	});
+    			}
+    		}
+    		date.setDate(date.getDate() + 1);
+    	}
     }
 
     /* Event source that calls a function on every view switch */
-    $scope.eventsF = function (start, end, timezone, callback) {};
+    $scope.eventsF = function (start, end, timezone, callback) {
+      var s = new Date(start).getTime() / 1000;
+      var e = new Date(end).getTime() / 1000;
+      var m = new Date(start).getMonth();
+      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+      callback(events);
+    };
+
+    /* Change View */
+    $scope.changeView = function(view,calendar) {
+      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+    };
 
     $scope.selectedView = 'Month';
     /* Change View */
@@ -87,19 +108,12 @@ angular.module('homework.controllers', [])
     	uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
     };
 
-    /* Render Calendar */
-    $scope.renderCalender = function (calendar) {
-      if (uiCalendarConfig.calendars[calendar]) {
-        uiCalendarConfig.calendars[calendar].fullCalendar('render');
-      }
-    };
-
-    /* config object */
+    /* Config object */
     $scope.uiConfig = {
-      calendar: {
-        height: 450,
+      calendar:{
+        height: 500,
         editable: false,
-        header: {
+        header:{
           left: 'title',
           center: '',
           right: 'prev,next'
@@ -107,11 +121,12 @@ angular.module('homework.controllers', [])
       }
     };
 
-    /* event sources array*/
+    /* Event sources array */
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
 })
 
 .controller('AssignmentsCtrl', function($scope, Assignments) {
+
 	$scope.assignments = Assignments.all();
 
 	$scope.getTimeUntilDue = function(assignment) {
