@@ -91,6 +91,15 @@ angular.module('homework', ['ionic', 'ui.calendar', 'homework.controllers', 'hom
       controller: 'SettingsCtrl'
       }
     }
+  })
+  .state('tab.new-class', {
+    url: '/new/class',
+    views: {
+      'tab-home': {
+      templateUrl: 'templates/new-class.html',
+      controller: 'NewClassCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

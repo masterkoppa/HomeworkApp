@@ -128,4 +128,8 @@ angular.module('homework.controllers', [])
 
 .controller('SettingsCtrl', function($scope) {
 
+})
+
+.controller('NewClassCtrl', function($scope) {
+    console.log("Got here");
 });
