@@ -132,4 +132,8 @@ angular.module('homework.controllers', [])
 
 .controller('NewClassCtrl', function($scope) {
     console.log("Got here");
+
+    $scope.createClass = function(classJson){
+        console.log(classJson);
+    }
 });

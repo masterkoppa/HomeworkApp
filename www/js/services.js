@@ -157,6 +157,24 @@ angular.module('homework.services', [])
         }
       }
       return null;
+    },
+    create(classJson) {
+      //Calculate the max class id
+      var max = 0;
+      for (var i = class_list.length - 1; i >= 0; i--) {
+        if(class_list[i].id > max){
+          max = class_list[i].id;
+        }
+      };
+
+      // Set the id
+      var class_id = max;
+      classObject.id = class_id;
+
+      // Initialize assigments array
+      classObject.assignments = []
+
+      class_list.append(classObject);
     }
   };
 })
