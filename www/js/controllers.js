@@ -59,7 +59,7 @@ angular.module('homework.controllers', [])
 })
 
 .controller('CalendarCtrl', function($scope, Classes, uiCalendarConfig) {
-    
+
     /* Event source that pulls from google.com */
     $scope.eventSource = {
             url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
@@ -96,12 +96,7 @@ angular.module('homework.controllers', [])
       callback(events);
     };
 
-    /* Change View */
-    $scope.changeView = function(view,calendar) {
-      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
-    };
-
-    $scope.selectedView = 'Month';
+    $scope.selectedView = 'month';
     /* Change View */
     $scope.changeView = function (view, calendar) {
     	$scope.selectedView = view;

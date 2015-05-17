@@ -57,3 +57,8 @@
 .calendar-button-bar {
 	margin-bottom: 15px;
 }
+
+.calendar-button-bar > a.button {
+	line-height: 35px;
+	min-height: 0;
+}
