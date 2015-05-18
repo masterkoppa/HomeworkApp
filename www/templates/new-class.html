@@ -14,9 +14,26 @@
           <span class="input-label">Teacher</span>
           <input type="text" ng-model="class.teacher" required />
         </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Color</span>
-          <input type="color" ng-model="class.color" />
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Color
+          </div>
+          <select ng-model="class.color">
+            <option>Aquamarine</option>
+            <option>BlueViolet</option>
+            <option>Crimson</option>
+            <option>DarkOrchid</option>
+            <option>GreenYellow</option>
+            <option>HotPink</option>
+            <option>LightSeaGreen</option>
+            <option>LightSkyBlue</option>
+            <option>MediumSlateBlue</option>
+            <option>Lime</option>
+            <option>Tomato</option>
+            <option>SpringGreen</option>
+            <option>Yellow</option>
+          </select>
+          <span style="width: 20px; height: 20px;" ng-style="{ 'background-color': class.color }"></span>
         </label>
       </div>
       <div class="padding">
