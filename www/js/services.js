@@ -162,6 +162,18 @@ angular.module('homework.services', [])
       }
       return null;
     },
+    getClassForAssignment: function(classId) {
+      for (var i = 0; i < class_list.length; i++) {
+        if (class_list[i].id === parseInt(classId)) {
+          var class_item = {};
+          class_item.name = class_list[i].name;
+          class_item.color = class_list[i].color;
+
+          return class_item;
+        }
+      }
+      return null;
+    },
     create: function(classJson) {
       //Calculate the max class id
       var max = 0;
@@ -194,6 +206,7 @@ angular.module('homework.services', [])
   var assignments = [{
     id: 0,
     name: 'Assignment #1',
+    classId: 0,
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: true,
     notes: null,
@@ -201,6 +214,7 @@ angular.module('homework.services', [])
   }, {
     id: 1,
     name: 'Assignment #2',
+    classId: 0,
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 15, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: false,
     notes: null,
@@ -208,11 +222,14 @@ angular.module('homework.services', [])
   }, {
     id: 2,
     name: 'Assignment #3',
+    classId: 1,
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 19, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: false,
-    notes: null
+    notes: null,
+    grade: null
   }, {
     id: 3,
+    classId: 2,
     name: 'Assignment #4',
     dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
     isCompleted: true,
@@ -222,6 +239,12 @@ angular.module('homework.services', [])
 
   return {
     all: function() {
+      /*
+      for (var i = 0; i < assignments.length; i++) {
+        assignments[i].class = Classes.getClassForAssignment(assignments[i].classId);
+        delete assignments[i].classId;
+      }
+      */
       return assignments;
     },
     remove: function(assignment) {
@@ -230,10 +253,30 @@ angular.module('homework.services', [])
     get: function(assignmentId) {
       for (var i = 0; i < assignments.length; i++) {
         if (assignments[i].id === parseInt(assignmentId)) {
-          return assignments[i];
+          var assignment = assignments[i];
+          // assignment.class = Classes.getClassForAssignment(assignment.classId);
+          // delete assignment.classId;
+
+          return assignment
         }
       }
       return null;
+    },
+    create: function(assignmentJson) {
+      //Calculate the max assignment id
+      var max = 0;
+      for (var i = assignments.length - 1; i >= 0; i--) {
+        if(assignments[i].id > max){
+          max = assignments[i].id;
+        }
+      };
+
+      // Set the id
+      var assignment_id = max + 1;
+      assignmentJson.id = assignment_id;
+
+      assignments.push(assignmentJson);
+      save(assignments);
     }
   };
 });

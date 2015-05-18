@@ -1,4 +1,7 @@
 <ion-view view-title="Assignments">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon icon ion-ios-plus-empty" ui-sref="tab.new-assignment"></button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list>
       <ion-item class="item-avatar item-icon-right" ng-repeat="assignment in assignments" type="item-text-wrap" href="#/tab/assignments/{{ assignment.id }}">

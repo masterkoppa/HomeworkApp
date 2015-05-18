@@ -141,10 +141,35 @@ angular.module('homework.controllers', [])
 })
 
 .controller('NewClassCtrl', function($scope, Classes, $location) {
-    console.log("Got here");
 
-    $scope.createClass = function(classJson){
+    $scope.createClass = function (classJson) {
         Classes.create(classJson);
-        $location.path("/");
+        $location.path('/');
+    }
+})
+
+.controller('NewAssignmentCtrl', function($scope, Assignments, Classes, $location) {
+
+	$scope.classes = Classes.all();
+
+    $scope.createAssignment = function (assignmentJson) {
+    	var newAssignment = {
+		    classId: assignmentJson.class.id,
+		    name: assignmentJson.name,
+		    dueDate: moment().set({
+		    	'year': assignmentJson.dueDate.getFullYear(), 
+		    	'month': assignmentJson.dueDate.getMonth(), 
+		    	'date': assignmentJson.dueDate.getDate(), 
+		    	'hour': assignmentJson.dueTime.getHours(), 
+		    	'minute': assignmentJson.dueTime.getMinutes(), 
+		    	'second': assignmentJson.dueTime.getSeconds()
+		    }),
+		    isCompleted: false,
+		    notes: assignmentJson.notes,
+		    grade: null
+    	};
+
+        Assignments.create(newAssignment);
+        $location.path('/');
     }
 });
