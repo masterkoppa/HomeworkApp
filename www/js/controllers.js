@@ -126,13 +126,14 @@ angular.module('homework.controllers', [])
 
 	$scope.getTimeUntilDue = function(assignment) {
 		var start = moment();
-		var end = assignment.dueDate;
+		var end = moment(assignment.dueDate);
 
 		return 'Due ' + end.from(start);
 	};
 })
 
 .controller('AssignmentDetailCtrl', function($scope, $stateParams, Assignments) {
+
 	$scope.assignment = Assignments.get($stateParams.assignmentId);
 })
 
@@ -148,7 +149,7 @@ angular.module('homework.controllers', [])
     }
 })
 
-.controller('NewAssignmentCtrl', function($scope, Assignments, Classes, $location) {
+.controller('NewAssignmentCtrl', function($scope, $location, Assignments, Classes) {
 
 	$scope.classes = Classes.all();
 
@@ -156,20 +157,42 @@ angular.module('homework.controllers', [])
     	var newAssignment = {
 		    classId: assignmentJson.class.id,
 		    name: assignmentJson.name,
-		    dueDate: moment().set({
-		    	'year': assignmentJson.dueDate.getFullYear(), 
-		    	'month': assignmentJson.dueDate.getMonth(), 
-		    	'date': assignmentJson.dueDate.getDate(), 
-		    	'hour': assignmentJson.dueTime.getHours(), 
-		    	'minute': assignmentJson.dueTime.getMinutes(), 
-		    	'second': assignmentJson.dueTime.getSeconds()
-		    }),
+		    dueDate: new Date(
+		    	assignmentJson.dueDate.getFullYear(),
+		    	assignmentJson.dueDate.getMonth(),
+		    	assignmentJson.dueDate.getDate(),
+		    	assignmentJson.dueTime.getHours(),
+		    	assignmentJson.dueTime.getMinutes(),
+		    	assignmentJson.dueTime.getSeconds()),
 		    isCompleted: false,
 		    notes: assignmentJson.notes,
 		    grade: null
     	};
 
         Assignments.create(newAssignment);
-        $location.path('/');
-    }
+        $location.path('/assignments');
+    };
+})
+
+.controller('EditAssignmentCtrl', function($scope, $stateParams, $location, Assignments, Classes) {
+
+	$scope.classes = Classes.all();
+	$scope.assignment = Assignments.get($stateParams.assignmentId);
+
+	$scope.assignment.dueDate = new Date($scope.assignment.dueDate);
+	$scope.assignment.dueTime = $scope.assignment.dueDate;
+
+    $scope.saveAssignment = function () {
+    	$scope.assignment.dueDate = new Date(
+    		$scope.assignment.dueDate.getFullYear(),
+	    	$scope.assignment.dueDate.getMonth(),
+	    	$scope.assignment.dueDate.getDate(),
+	    	$scope.assignment.dueTime.getHours(),
+	    	$scope.assignment.dueTime.getMinutes(),
+	    	$scope.assignment.dueTime.getSeconds());
+    	delete $scope.assignment.dueTime;
+
+	    Assignments.edit($scope.assignment);
+	    $location.path('/assignments/' + $scope.assignment.id);
+    };
 });

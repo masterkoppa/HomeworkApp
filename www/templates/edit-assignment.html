@@ -1,0 +1,48 @@
+<ion-view view-title="Edit Assignment">
+  <ion-content class="padding new-class">
+    <form name="assignmentForm" class="form-group">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="assignment.name" required />
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">Class</span>
+          <select ng-model="assignment.class" ng-options="class as class.name for class in classes" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label"></span>
+          <input type="text" />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Due Date</span>
+          <input type="date" ng-model="assignment.dueDate" placeholder="yyyy-MM-dd" required />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Due Time</span>
+          <input type="time" ng-model="assignment.dueTime" placeholder="HH:mm:ss" required />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Notes</span>
+          <textarea ng-model="assignment.notes"></textarea>
+        </label>
+        <li class="item item-toggle">
+           Completed
+           <label class="toggle toggle-balanced">
+             <input type="checkbox" ng-model="assignment.isCompleted">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Grade</span>
+          <input type="number" ng-model="assignment.grade" required />
+        </label>
+      </div>
+      <div class="padding">
+        <button ng-disabled="assignmentForm.$invalid" ng-click="saveAssignment()" class="button button-block button-positive">Save</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

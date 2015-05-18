@@ -109,6 +109,15 @@ angular.module('homework', ['ionic', 'ui.calendar', 'jcs-autoValidate' ,'homewor
       controller: 'NewAssignmentCtrl'
       }
     }
+  })
+  .state('tab.edit-assignment', {
+    url: '/edit/assignment/:assignmentId',
+    views: {
+      'tab-assignments': {
+      templateUrl: 'templates/edit-assignment.html',
+      controller: 'EditAssignmentCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

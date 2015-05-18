@@ -202,58 +202,72 @@ angular.module('homework.services', [])
 .factory('Assignments', function() {
   // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var assignments = [{
-    id: 0,
-    name: 'Assignment #1',
-    classId: 0,
-    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: true,
-    notes: null,
-    grade: 88
-  }, {
-    id: 1,
-    name: 'Assignment #2',
-    classId: 0,
-    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 15, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: false,
-    notes: null,
-    grade: null
-  }, {
-    id: 2,
-    name: 'Assignment #3',
-    classId: 1,
-    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 19, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: false,
-    notes: null,
-    grade: null
-  }, {
-    id: 3,
-    classId: 2,
-    name: 'Assignment #4',
-    dueDate: moment().set({'year': 2015, 'month': 4, 'date': 13, 'hour': 23, 'minute': 59, 'second': 59}),
-    isCompleted: true,
-    notes: null,
-    grade: 92
-  }];
+  var assignment_id = 0;
+  var assignment_list = {}
+
+  // If the class list does not exist in storage
+  if (!localStorage.assignment_list) {
+    // Some fake testing data
+    var assignments = [{
+      id: 0,
+      name: 'Assignment #1',
+      classId: 0,
+      dueDate: new Date(2015, 4, 13, 23, 59),
+      isCompleted: true,
+      notes: null,
+      grade: 88
+    }, {
+      id: 1,
+      name: 'Assignment #2',
+      classId: 0,
+      dueDate: new Date(2015, 4, 15, 23, 59),
+      isCompleted: false,
+      notes: null,
+      grade: null
+    }, {
+      id: 2,
+      name: 'Assignment #3',
+      classId: 1,
+      dueDate: new Date(2015, 4, 19, 23, 59),
+      isCompleted: false,
+      notes: null,
+      grade: null
+    }, {
+      id: 3,
+      classId: 2,
+      name: 'Assignment #4',
+      dueDate: new Date(2015, 4, 13, 23, 59),
+      isCompleted: true,
+      notes: null,
+      grade: 92
+    }];
+
+    localStorage.assignment_list = JSON.stringify(assignments);
+  }
+
+  assignment_list = JSON.parse(localStorage.assignment_list);
+
+  var save = function(assignment_list){
+    localStorage.assignment_list = JSON.stringify(assignment_list);
+  }
 
   return {
     all: function() {
       /*
-      for (var i = 0; i < assignments.length; i++) {
-        assignments[i].class = Classes.getClassForAssignment(assignments[i].classId);
-        delete assignments[i].classId;
+      for (var i = 0; i < assignment_list.length; i++) {
+        assignment_list[i].class = Classes.getClassForAssignment(assignment_list[i].classId);
+        delete assignment_list[i].classId;
       }
       */
-      return assignments;
+      return assignment_list;
     },
     remove: function(assignment) {
-      assignments.splice(assignments.indexOf(assignment), 1);
+      assignment_list.splice(assignment_list.indexOf(assignment), 1);
     },
     get: function(assignmentId) {
-      for (var i = 0; i < assignments.length; i++) {
-        if (assignments[i].id === parseInt(assignmentId)) {
-          var assignment = assignments[i];
+      for (var i = 0; i < assignment_list.length; i++) {
+        if (assignment_list[i].id === parseInt(assignmentId)) {
+          var assignment = assignment_list[i];
           // assignment.class = Classes.getClassForAssignment(assignment.classId);
           // delete assignment.classId;
 
@@ -265,9 +279,9 @@ angular.module('homework.services', [])
     create: function(assignmentJson) {
       //Calculate the max assignment id
       var max = 0;
-      for (var i = assignments.length - 1; i >= 0; i--) {
-        if(assignments[i].id > max){
-          max = assignments[i].id;
+      for (var i = assignment_list.length - 1; i >= 0; i--) {
+        if(assignment_list[i].id > max){
+          max = assignment_list[i].id;
         }
       };
 
@@ -275,8 +289,17 @@ angular.module('homework.services', [])
       var assignment_id = max + 1;
       assignmentJson.id = assignment_id;
 
-      assignments.push(assignmentJson);
-      save(assignments);
+      assignment_list.push(assignmentJson);
+      save(assignment_list);
+    },
+    edit: function(assignment) {
+      for (var i = 0; i < assignment_list.length; i++) {
+        if (assignment_list[i].id === parseInt(assignment.id)) {
+          assignment_list[i] = assignment;
+          break
+        }
+      }
+      save(assignment_list);
     }
   };
 });
