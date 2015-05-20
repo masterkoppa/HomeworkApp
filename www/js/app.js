@@ -101,6 +101,15 @@ angular.module('homework', ['ionic', 'ui.calendar', 'jcs-autoValidate' ,'homewor
       }
     }
   })
+  .state('tab.edit-class', {
+    url: '/edit/class/:classId',
+    views: {
+      'tab-home': {
+      templateUrl: 'templates/edit-class.html',
+      controller: 'EditClassCtrl'
+      }
+    }
+  })
   .state('tab.new-assignment', {
     url: '/new/assignment',
     views: {

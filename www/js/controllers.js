@@ -29,9 +29,11 @@ angular.module('homework.controllers', [])
 	};
 })
 
-.controller('ClassDetailCtrl', function($scope, $stateParams, Classes) {
+.controller('ClassDetailCtrl', function($scope, $stateParams, Classes, $state) {
 
 	$scope.class = Classes.get($stateParams.classId);
+
+	console.log(Classes.get($stateParams.classId))
 
 	$scope.getFormattedMeetingTime = function (meetingTime) {
 		var start = moment().set({ 'hour': meetingTime.start.hour, 'minute': meetingTime.start.minute });
@@ -56,6 +58,11 @@ angular.module('homework.controllers', [])
 		// TODO: Maybe add weights to assignments and calculate grade based off of that rather than a simple average
 		return (sum / num);
 	};
+
+	$scope.goToAssigment = function(assignmentId){
+		console.log(assignmentId)
+		$state.go('tab.assignment-detail', {assignmentId: assignmentId}, {relative: true});
+	}
 })
 
 .controller('CalendarCtrl', function($scope, Classes, uiCalendarConfig) {
@@ -132,9 +139,20 @@ angular.module('homework.controllers', [])
 	};
 })
 
-.controller('AssignmentDetailCtrl', function($scope, $stateParams, Assignments) {
+.controller('AssignmentDetailCtrl', function($scope, $stateParams, Assignments, Classes, $ionicHistory, $state) {
 
 	$scope.assignment = Assignments.get($stateParams.assignmentId);
+	$scope.class = Classes.get($scope.assignment.classId);
+	$scope.hasHistory = ($ionicHistory.backView().stateName === "tab.class-detail");
+
+	$scope.goBackHack = function(){
+		$ionicHistory.nextViewOptions({
+		  disableBack: true
+		});
+		$state.go('tab.assignments');
+	}
+
+	console.log($scope.hasHistory);
 })
 
 .controller('SettingsCtrl', function($scope) {
@@ -146,6 +164,20 @@ angular.module('homework.controllers', [])
     $scope.createClass = function (classJson) {
         Classes.create(classJson);
         $location.path('/');
+    }
+})
+
+.controller('EditClassCtrl', function($scope, $stateParams, Classes, $location, $ionicHistory) {
+
+	$scope.class = Classes.get($stateParams.classId);
+	$scope.classId = $stateParams.classId;
+
+    $scope.saveClass = function (classJson) {
+        Classes.update($scope.classId, classJson);
+        $location.path('/');
+        $ionicHistory.nextViewOptions({
+		  disableBack: true
+		});
     }
 })
 

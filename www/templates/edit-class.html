@@ -1,0 +1,42 @@
+<ion-view view-title="Edit Class">
+  <ion-content class="padding new-class">
+    <form name="classForm" class="form-group">
+      <div class="list">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="class.name" required />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Location</span>
+          <input type="text" ng-model="class.location" required />
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Teacher</span>
+          <input type="text" ng-model="class.teacher" required />
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">Color</div>
+          <select ng-model="class.color" required>
+            <option>Aquamarine</option>
+            <option>BlueViolet</option>
+            <option>Crimson</option>
+            <option>DarkOrchid</option>
+            <option>GreenYellow</option>
+            <option>HotPink</option>
+            <option>LightSeaGreen</option>
+            <option>LightSkyBlue</option>
+            <option>MediumSlateBlue</option>
+            <option>Lime</option>
+            <option>Tomato</option>
+            <option>SpringGreen</option>
+            <option>Yellow</option>
+          </select>
+          <span style="width: 20px; height: 20px;" ng-style="{ 'background-color': class.color }"></span>
+        </label>
+      </div>
+      <div class="padding">
+        <button ng-disabled="classForm.$invalid" ng-click="saveClass(class)" class="button button-block button-positive" nav-clear>Save Class</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

@@ -152,10 +152,16 @@ angular.module('homework.services', [])
         if (class_list[i].id === parseInt(classId)) {
           var class_item = {}
           angular.extend(class_item, class_list[i]);
+          console.log(class_item);
           for(var a = 0; a < class_item.assignments.length; a++){
             var assignment_id = class_item.assignments[a];
             
-            class_item.assignments[a] = Assignments.get(class_item.assignments[a]);
+            if(typeof assignment_id === 'number'){
+              class_item.assignments[a] = Assignments.get(assignment_id);
+            }
+            
+
+            console.log(class_item.assignments)
           }
           return class_item;
         }
@@ -195,6 +201,20 @@ angular.module('homework.services', [])
 
       class_list.push(classJson);
       save(class_list);
+    },
+    update: function(classId, classJson){
+      for (var i = 0; i < class_list.length; i++) {
+        if (class_list[i].id === parseInt(classId)) {
+          var class_obj = class_list[i];
+
+          class_obj.name = classJson.name;
+          class_obj.location = classJson.location;
+          class_obj.teacher = classJson.location;
+          class_obj.color = classJson.color;
+
+          save(class_list);
+        }
+      }
     }
   };
 })
